@@ -1,0 +1,203 @@
+:root {
+  --primary-color: #646cff;
+  --secondary-color: #535bf2;
+  --bg-gradient: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  /* Glassmorphism */
+  --text-color: #ffffff;
+  --accent-color: #42d392;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0f2027;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: var(--text-color);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* App Container */
+.app-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Header */
+header h1 {
+  font-size: 2.5rem;
+  /* Mobile default */
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #42d392 0%, #647eff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+header p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+/* Form Card (Glassmorphism) */
+.form-container {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-5px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Input Styling */
+input {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(100, 108, 255, 0.3);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Button Styling */
+button {
+  padding: 0.9rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 108, 255, 0.6);
+  filter: brightness(1.1);
+}
+
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Results */
+.result-container {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.5s ease;
+}
+
+.result-container p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.short-url {
+  display: block;
+  padding: 0.8rem;
+  background: rgba(66, 211, 146, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(66, 211, 146, 0.3);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  word-break: break-all;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.short-url:hover {
+  background: rgba(66, 211, 146, 0.2);
+  transform: scale(1.02);
+}
+
+.error-message {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+footer {
+  margin-top: 3rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+  header h1 {
+    font-size: 3.5rem;
+  }
+}
