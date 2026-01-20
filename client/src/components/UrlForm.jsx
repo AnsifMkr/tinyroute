@@ -13,7 +13,7 @@ const UrlForm = () => {
         setShortUrl('');
 
         try {
-            const res = await fetch('http://localhost:5000/api/url/shorten', {
+            const res = await fetch('https://tinyroute-xi.vercel.app/api/url/shorten', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
