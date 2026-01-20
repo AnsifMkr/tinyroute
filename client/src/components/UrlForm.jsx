@@ -13,7 +13,8 @@ const UrlForm = () => {
         setShortUrl('');
 
         try {
-            const res = await fetch('https://tinyroute-xi.vercel.app/api/url/shorten', {
+            const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+            const res = await fetch(`${backendUrl}/api/url/shorten`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
