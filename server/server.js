@@ -4,12 +4,10 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 
-app.use(cors());
-
-// Connect to database
-// We will create the db connection logic separately or inline it. 
-// For simplicity, let's inline it if not too complex, but following best practices I'll make a config folder.
-// Actually, let's keep it simple as per plan.
+app.use(cors({
+    origin: ['https://tr-gold.vercel.app', 'http://localhost:5173'],
+    credentials: true
+}));
 
 const mongoose = require('mongoose');
 
@@ -28,10 +26,15 @@ connectMongo();
 
 app.use(express.json({ extended: false }));
 
-// Define Routes
-app.use('/', require('./routes/index'));
+app.get('/', (req, res) => {
+    res.send('Server is running');
+});
+
 app.use('/api/url', require('./routes/url'));
 
-const PORT = 5000;
+module.exports = app;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (require.main === module) {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
