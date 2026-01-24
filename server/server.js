@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
@@ -8,11 +7,10 @@ const allowedOrigins = [
   'https://tr-gold.vercel.app', 
   'http://localhost:5173'
 ];
+
 app.use(cors({
     origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl requests)
     if (!origin) return callback(null, true);
-    
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -30,25 +28,23 @@ app.options('*', (req, res) => {
   res.status(200).end();
 });
 
+app.use(express.json({ extended: false }));
+
 const mongoose = require('mongoose');
 
 const connectMongo = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);
-
         console.log('MongoDB Connected...');
     } catch (err) {
-        console.error(err.message);
-        process.exit(1);
+        console.error('MongoDB error:', err.message);
     }
 };
 
 connectMongo();
 
-app.use(express.json({ extended: false }));
-
 app.get('/', (req, res) => {
-    res.send('Server is running');
+    res.json({ message: 'Server is running' });
 });
 
 app.use('/api/url', require('./routes/url'));
