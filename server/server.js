@@ -31,6 +31,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/url', require('./routes/url'));
 
+app.get('/:urlCode', require('./routes/url'));
+
 // Error handler
 app.use((err, req, res, next) => {
     console.error('Error:', err);
