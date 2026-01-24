@@ -40,4 +40,21 @@ router.post('/shorten', async (req, res) => {
     }
 });
 
+// @route   GET /:urlCode
+// @desc    Redirect to original URL
+router.get('/:urlCode', async (req, res) => {
+    try {
+        const url = await Url.findOne({ urlCode: req.params.urlCode });
+
+        if (url) {
+            return res.redirect(url.longUrl);
+        } else {
+            return res.status(404).json({ error: 'URL not found' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 module.exports = router;
